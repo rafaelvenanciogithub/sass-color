@@ -31,3 +31,12 @@ $delta-a:                     (math.pow($alpha, $gamma) * math.pow($mgamma, $mga
 $delta-b:                     (math.pow($malpha, $mgamma) * math.pow($gamma, $gamma));
 $delta:                       math.div($delta-a, $delta-b);
 $beta:                        math.div($betadelta, $delta);
+$linear-xr:                   0.41239079926595934;
+$linear-xg:                   0.357584339383878;
+$linear-xb:                   0.1804807884018343;
+$linear-yr:                   0.21263900587151027;
+$linear-yg:                   0.715168678767756;
+$linear-yb:                   0.07219231536073371;
+$linear-zr:                   0.01933081871559182;
+$linear-zg:                   0.11919477979462598;
+$linear-zb:                   0.9505321522496607;
