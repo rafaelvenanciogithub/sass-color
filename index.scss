@@ -1,11 +1,40 @@
+@use 'sass:color';
 @use 'sass:math';
 @use 'sass:list';
 @use 'variables' as *;
 
 
 
+$color-demo:                  rgb(35, 37, 46);
+
+
+
 @function rv-clip($value) {
   @return math.div($value, $rgb);
+}
+
+@function _rv-alone-lin($value, $clip: false) {
+  @if not $clip {
+    $value: rv-clip($value);
+    
+    @return _rv-alone-lin($value, true);
+  }
+
+  $sign: if(($value < 0), -1, 1);
+  $abs: math.abs($value);
+  $c: ($abs <= $betadelta);
+  $t: math.div($value, $delta);
+  $f: ($sign * math.pow(math.div(($abs + $malpha), $alpha), $gamma));
+
+  @return if($c, $t, $f);
+}
+
+@function rv-linear($color) {
+  $r: _rv-alone-lin(color.red($color));
+  $g: _rv-alone-lin(color.green($color));
+  $b: _rv-alone-lin(color.blue($color));
+
+  @return $r, $g, $b;
 }
 
 
@@ -24,4 +53,6 @@
 @debug '  BETADELTA VALUE:  #{$betadelta}';
 @debug '      DELTA VALUE:  #{$delta}';
 @debug '       BETA VALUE:  #{$beta}';
+@debug '       COLOR DEMO:  #{$color-demo}';
+@debug 'COLOR DEMO LINEAR:  #{rv-linear($color-demo)}';
 @debug '----------------------------------';
