@@ -1,0 +1,33 @@
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+
+
+$use-alt:                     false;
+
+
+// variables with prefix [m*] indicates minimum value
+$rgb:                         255;
+$int:                         math.div($rgb, $rgb);
+$main-gamma-dividend:         12;
+$main-gamma-divisor:          5;
+$alt-gamma-dividend:          20;
+$alt-gamma-divisor:           9;
+$gamma-dividend:              if($use-alt, $alt-gamma-dividend, $main-gamma-dividend);
+$gamma-divisor:               if($use-alt, $alt-gamma-divisor, $main-gamma-divisor);
+$gamma:                       math.div($gamma-dividend, $gamma-divisor);
+$mgamma:                      ($gamma - $int);
+$main-alpha-dividend:         211;
+$main-alpha-divisor:          200;
+$alt-alpha-dividend:          1099;
+$alt-alpha-divisor:           1000;
+$alpha-dividend:              if($use-alt, $alt-alpha-dividend, $main-alpha-dividend);
+$alpha-divisor:               if($use-alt, $alt-alpha-divisor, $main-alpha-divisor);
+$alpha:                       math.div($alpha-dividend, $alpha-divisor);
+$malpha:                      ($alpha - $int);
+$betadelta:                   math.div($malpha, $mgamma);
+$delta-a:                     (math.pow($alpha, $gamma) * math.pow($mgamma, $mgamma));
+$delta-b:                     (math.pow($malpha, $mgamma) * math.pow($gamma, $gamma));
+$delta:                       math.div($delta-a, $delta-b);
+$beta:                        math.div($betadelta, $delta);

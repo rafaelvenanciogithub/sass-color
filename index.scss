@@ -1,0 +1,27 @@
+@use 'sass:math';
+@use 'sass:list';
+@use 'variables' as *;
+
+
+
+@function rv-clip($value) {
+  @return math.div($value, $rgb);
+}
+
+
+
+
+
+
+
+@debug '----------------------------------';
+@debug '        RGB VALUE:  #{$rgb}';
+@debug '        INT VALUE:  #{$int}';
+@debug '  MAX GAMMA VALUE:  #{$gamma}';
+@debug '  MIN GAMMA VALUE:  #{$mgamma}';
+@debug '  MAX ALPHA VALUE:  #{$alpha}';
+@debug '  MIN ALPHA VALUE:  #{$malpha}';
+@debug '  BETADELTA VALUE:  #{$betadelta}';
+@debug '      DELTA VALUE:  #{$delta}';
+@debug '       BETA VALUE:  #{$beta}';
+@debug '----------------------------------';
